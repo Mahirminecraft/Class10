@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SecureNotes - Class 10 Homework Portal</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="logo">
+                <h1>SECURE<span class="neon">NOTES</span></h1>
+                <p class="tagline">Class 10 Homework Portal</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="input-group">
+                    <input type="text" id="userId" placeholder="User ID" required>
+                    <span class="input-highlight"></span>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <span class="input-highlight"></span>
+                </div>
+                
+                <button type="submit" class="btn-primary">ACCESS SYSTEM</button>
+                
+                <div class="guest-option">
+                    <button type="button" id="guestBtn" class="btn-secondary">Guest Mode</button>
+                    <button type="button" id="requestAccountBtn" class="btn-secondary">Request Account</button>
+                </div>
+            </form>
+            
+            <div id="loginMessage" class="message"></div>
+        </div>
+    </div>
+
+    <!-- Guest Info Screen -->
+    <div id="guestScreen" class="screen">
+        <div class="info-container">
+            <div class="logo">
+                <h1>SECURE<span class="neon">NOTES</span></h1>
+            </div>
+            
+            <div class="info-content">
+                <h2>Welcome to SecureNotes</h2>
+                <div class="info-section">
+                    <h3>About This Portal</h3>
+                    <p>SecureNotes is a protected homework portal designed exclusively for Class 10 students. This system provides secure access to subject-wise homework notes and assignments.</p>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Access Requirements</h3>
+                    <ul>
+                        <li>Valid User ID and Password (provided by instructor)</li>
+                        <li>Registered device for security</li>
+                        <li>Active student status</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Available Subjects</h3>
+                    <div class="subjects-grid">
+                        <span class="subject-tag">Bangla</span>
+                        <span class="subject-tag">English</span>
+                        <span class="subject-tag">Mathematics</span>
+                        <span class="subject-tag">Physics</span>
+                        <span class="subject-tag">Chemistry</span>
+                        <span class="subject-tag">Biology</span>
+                        <span class="subject-tag">Higher Math</span>
+                        <span class="subject-tag">ICT</span>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Contact Information</h3>
+                    <p>For access credentials or technical support, please contact your class instructor.</p>
+                </div>
+            </div>
+            
+            <button id="backToLoginBtn" class="btn-primary">Back to Login</button>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboardScreen" class="screen">
+        <header class="header">
+            <div class="header-left">
+                <h1>SECURE<span class="neon">NOTES</span></h1>
+                <span id="userWelcome" class="user-info"></span>
+            </div>
+            <div class="header-right">
+                <button id="chatBtn" onclick="toggleChat()" class="btn-secondary">Chat</button>
+                <button id="adminBtn" class="btn-admin" style="display: none;">Admin Panel</button>
+                <button id="logoutBtn" class="btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <main class="dashboard">
+            <div class="subjects-container">
+                <h2>Homework Subjects</h2>
+                <div class="subjects-grid-main" id="subjectsContainer">
+                    <!-- Subjects will be loaded dynamically -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Subject View -->
+    <div id="subjectScreen" class="screen">
+        <header class="header">
+            <div class="header-left">
+                <button id="backToDashboard" class="btn-secondary">← Back</button>
+                <h1 id="subjectTitle">Subject</h1>
+            </div>
+            <div class="header-right">
+                <button onclick="toggleChat()" class="btn-secondary">Chat</button>
+                <button id="logoutBtn2" class="btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <main class="subject-content">
+            <div id="homeworkList" class="homework-list">
+                <!-- Homework items will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminScreen" class="screen">
+        <header class="header">
+            <div class="header-left">
+                <button id="backFromAdmin" class="btn-secondary">← Back</button>
+                <h1>Admin Panel</h1>
+            </div>
+            <div class="header-right">
+                <button onclick="toggleChat()" class="btn-secondary">Chat</button>
+                <button id="logoutBtn3" class="btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <main class="admin-content">
+            <div class="admin-sections">
+                <div class="admin-section">
+                    <h3>Add Homework</h3>
+                    <form id="addHomeworkForm">
+                        <select id="homeworkSubject" required>
+                            <option value="">Select Subject</option>
+                        </select>
+                        <input type="text" id="homeworkTitle" placeholder="Homework Title" required>
+                        <textarea id="homeworkContent" placeholder="Homework Content" required></textarea>
+                        <input type="file" id="homeworkFiles" multiple accept="image/*,.pdf,.doc,.docx,.txt">
+                        <input type="date" id="homeworkDue" required>
+                        <button type="submit" class="btn-primary">Add Homework</button>
+                    </form>
+                </div>
+
+                <div class="admin-section">
+                    <h3>Manage Subjects</h3>
+                    <form id="addSubjectForm">
+                        <input type="text" id="subjectCode" placeholder="Subject Code (e.g., bangla)" required>
+                        <input type="text" id="subjectName" placeholder="Subject Name (e.g., Bangla)" required>
+                        <input type="text" id="subjectDescription" placeholder="Subject Description" required>
+                        <button type="submit" class="btn-primary">Add Subject</button>
+                    </form>
+                    
+                    <div class="subject-list">
+                        <h4>Current Subjects</h4>
+                        <div id="currentSubjects"></div>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h3>Account Requests</h3>
+                    <div id="accountRequestsList" class="requests-list">
+                        <!-- Account requests will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h3>Add New User</h3>
+                    <form id="addUserForm">
+                        <input type="text" id="newUserId" placeholder="User ID" required>
+                        <input type="password" id="newUserPassword" placeholder="Password" required>
+                        <input type="text" id="newUserName" placeholder="Full Name" required>
+                        <select id="newUserRole" required>
+                            <option value="">Select Role</option>
+                            <option value="student">Student</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                        <button type="submit" class="btn-primary">Add User</button>
+                    </form>
+                </div>
+
+                <div class="admin-section">
+                    <h3>Manage Users</h3>
+                    <div id="usersList" class="users-list">
+                        <!-- Users will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Account Request Screen -->
+    <div id="requestScreen" class="screen">
+        <div class="login-container">
+            <div class="logo">
+                <h1>SECURE<span class="neon">NOTES</span></h1>
+                <p class="tagline">Request Account Access</p>
+            </div>
+            
+            <form id="accountRequestForm" class="login-form">
+                <div class="input-group">
+                    <input type="text" id="requestFullName" placeholder="Full Name" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="requestRollNo" placeholder="Roll Number" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="requestPassword" placeholder="Desired Password" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="requestConfirmPassword" placeholder="Confirm Password" required>
+                </div>
+                
+                <button type="submit" class="btn-primary">Submit Request</button>
+                
+                <div class="guest-option">
+                    <button type="button" id="backToLoginFromRequest" class="btn-secondary">Back to Login</button>
+                </div>
+            </form>
+            
+            <div id="requestMessage" class="message"></div>
+        </div>
+    </div>
+
+    
+
+    <!-- Chat Panel -->
+    <div id="chatPanel" class="chat-panel">
+        <div class="chat-header">
+            <h3>Global Chat</h3>
+            <div class="chat-controls">
+                <button id="clearChatBtn" onclick="clearChat()" class="btn-danger chat-btn" style="display: none;">Clear Chat</button>
+                <button onclick="toggleChat()" class="btn-secondary chat-btn">×</button>
+            </div>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+            <!-- Messages will be loaded here -->
+        </div>
+        <form id="chatForm" class="chat-form">
+            <input type="text" id="chatInput" placeholder="Type your message..." maxlength="500" required>
+            <button type="submit" class="chat-send-btn">📤</button>
+        </form>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
