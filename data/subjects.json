@@ -1,0 +1,35 @@
+
+{
+  "bangla": {
+    "name": "Bangla",
+    "description": "বাংলা ব্যাকরণ, সাহিত্য ও রচনা"
+  },
+  "english": {
+    "name": "English",
+    "description": "Grammar, Literature, Composition"
+  },
+  "mathematics": {
+    "name": "Mathematics",
+    "description": "Algebra, Geometry, Trigonometry"
+  },
+  "physics": {
+    "name": "Physics",
+    "description": "Mechanics, Thermodynamics, Electromagnetism"
+  },
+  "chemistry": {
+    "name": "Chemistry",
+    "description": "Organic, Inorganic, Physical Chemistry"
+  },
+  "biology": {
+    "name": "Biology",
+    "description": "Botany, Zoology, Human Physiology"
+  },
+  "higher_math": {
+    "name": "Higher Math",
+    "description": "Calculus, Statistics, Coordinate Geometry"
+  },
+  "ict": {
+    "name": "ICT",
+    "description": "Information & Communication Technology"
+  }
+}

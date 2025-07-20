@@ -1,0 +1,24 @@
+{
+  "2129136822": {
+    "password": "mbmEmmm21291",
+    "name": "Teacher Admin",
+    "role": "admin",
+    "devices": [],
+    "activeDevice": null,
+    "ipAddress": null,
+    "isLoggedIn": true,
+    "banned": false,
+    "homeworkHidden": false
+  },
+  "student_07": {
+    "password": "mbmEmmm21291",
+    "name": "Mahir Sayban",
+    "role": "student",
+    "devices": [],
+    "activeDevice": null,
+    "ipAddress": null,
+    "isLoggedIn": false,
+    "banned": false,
+    "homeworkHidden": false
+  }
+}
